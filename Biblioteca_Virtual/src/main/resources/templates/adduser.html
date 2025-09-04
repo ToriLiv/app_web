@@ -9,7 +9,7 @@
 <body>
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
   <div class="card shadow p-5 rounded-4 contact-card w-100" style="max-width: 600px;">
-    <h2 class="text-center fw-bold mb-4 title-d">➕ ADD User</h2>
+    <h2 class="text-center fw-bold mb-4 title-d">➕ ADD USER</h2>
     <form th:action="@{/users/saveuser}" th:object="${user}" method="post">
       <div class="mb-3">
         <input type="hidden" th:field="*{id}" />
