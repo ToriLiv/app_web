@@ -1,0 +1,47 @@
+package com.Biblioteca_Virtual.service;
+
+import com.Biblioteca_Virtual.model.Book;
+import com.Biblioteca_Virtual.model.BookStatus;
+import com.Biblioteca_Virtual.model.Loan;
+import com.Biblioteca_Virtual.model.LoanStatus;
+import com.Biblioteca_Virtual.repository.BookRepository;
+import com.Biblioteca_Virtual.repository.LoanRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.time.LocalDate;
+
+//service class for managin loans
+//business logic for creating and returning loans
+
+@Service
+public class LoanService {
+
+    @Autowired
+    private LoanRepository loanRepository;
+
+    @Autowired
+    private BookRepository bookRepository;
+
+    //--------------manage loans---------------------->>
+    public Loan createLoan(Book book, String borrower) {
+        Loan loan = new Loan();
+        loan.setBook(book);
+        loan.setBorrowerName(borrower);
+        loan.setLoanDate(LocalDate.now());
+        loan.setDueDate(LocalDate.now().plusWeeks(2)); //2 weeks loan period
+        loan.setStatus(LoanStatus.ACTIVE);
+        book.setStatus(BookStatus.BORROWED);
+        bookRepository.save(book);
+        return loanRepository.save(loan);
+    }
+
+    public Loan returnBook(Loan loan) {
+        loan.setReturnDate(LocalDate.now());
+        loan.setStatus(LoanStatus.RETURNED);
+        Book book = loan.getBook();
+        book.setStatus(BookStatus.AVAILABLE);
+        bookRepository.save(book);
+        return loanRepository.save(loan);
+    }
+}
+

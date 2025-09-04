@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Caprasimo&display=swap');
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: "Caprasimo", sans-serif;
+}
+
+body {
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100vh;
+background: #000;
+}
+
+button {
+background-color: #0096A3;
+color: white;
+padding: 15px 30px;
+font-size: 18px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+
+button:hover {
+background-color: #52023D;
+}
+
+.information{
+position: absolute;
+color: white;
+text-align: center;
+width: 600px;
+background: #222;
+z-index: 1000;
+padding: 20px;
+border-radius: 4px;
+box-shadow: 0 15px 35px rgba(0, 0, 0, 0.9);
+}
+
+section {
+position: absolute;
+width: 100vw;
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 2px;
+flex-wrap: wrap;
+overflow: hidden;
+}
+
+/*****************efecto degradado*********************/
+section::before {
+content: '';
+position: absolute;
+width: 100%;
+height: 100%;
+background: linear-gradient(#25004D, #F4E6FF, #25004D);
+animation: animate 5s linear infinite;
+}
+
+/*********************animaciones del fondo************/
+@keyframes animate {
+0% {
+transform: translateY(-100%);
+}
+
+100% {
+transform: translateY(100%);
+}
+}
+
+/***********************grid individual****************/
+section span {
+position: relative;
+display: block;
+width: calc(5vw - 2px);
+height: calc(5vw - 2px);
+background: #2C004D;
+z-index: 2;
+transition: 1.5s;
+}
+
+
+/***********************pintar cuadros******************/
+section span:hover {
+background: #E0B8FF;
+transition: 0s;
+}
+
+/***********************responsive**********************/
+/*-------------responsive design-----------------*/
+@media (max-width: 900px) {
+section span {
+width: calc(10vw - 2px);
+height: calc(10vw - 2px);
+}
+}
+
+@media (max-width: 600px) {
+section span {
+width: calc(20vw - 2px);
+height: calc(20vw - 2px);
+}
+}
+

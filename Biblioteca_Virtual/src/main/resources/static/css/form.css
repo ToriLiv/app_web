@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lilita+One&display=swap');
+
+* {
+font-family: "Lilita One", sans-serif;
+}
+
+
+body {
+padding: 20px;
+padding: 20px;
+color: #420570;
+background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+background-size: 400% 400%;
+animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+0% {
+background-position: 0% 50%;
+}
+50% {
+background-position: 100% 50%;
+}
+100% {
+background-position: 0% 50%;
+}
+}
+
+.contact-card {
+background-color: white;
+}
+
+.title-d{
+color:  #420570 !important;
+font-size: 24px;
+}
+
+.gradient-btn {
+background: linear-gradient(to right, #f953c6, #1db4b9);
+border: none;
+font-size: 16px;
+letter-spacing: 3px;
+color: #E0BBFC;
+}
+
+.gradient-btn:hover {
+opacity: 0.9;
+}
+
+label{
+font-size: 16px !important;
+color: #420570;
+}
+
+input:focus{
+outline: none !important;
+border-bottom: 1px solid #52023D;
+box-shadow: none !important;
+}
+
+a{
+text-decoration: none;
+color: #0096A3;
+}
+

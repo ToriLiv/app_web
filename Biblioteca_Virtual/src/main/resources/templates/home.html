@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Virtual Library</title>
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+
+</head>
+<body>
+
+<section id="grid">
+    <div class="col-md-12 text-center information">
+        <h1 style="font-size:35px; color:#E7FEFB;">🌷 VIRTUAL LIBRARY 🌷</h1>
+        <br>
+        <p style="font-size:20px; color:#E7FEFB;">"Smart management, happy readers"</p>
+        <br>
+        <a th:href="@{/books/list}">
+            <button>Books Hub</button>
+        </a>
+    </div>
+</section>
+
+<script>
+    const section = document.getElementById("grid");
+    const total = 400;
+    for (let i = 0; i < total; i++) {
+      const span = document.createElement("span");
+      section.appendChild(span);
+    }
+</script>
+</body>
+</html>
