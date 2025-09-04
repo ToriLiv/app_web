@@ -1,10 +1,8 @@
 package com.Biblioteca_Virtual.controller;
-import com.Biblioteca_Virtual.model.Book;
-import com.Biblioteca_Virtual.model.BookStatus;
-import com.Biblioteca_Virtual.model.Loan;
-import com.Biblioteca_Virtual.model.LoanStatus;
+import com.Biblioteca_Virtual.model.*;
 import com.Biblioteca_Virtual.repository.BookRepository;
 import com.Biblioteca_Virtual.repository.LoanRepository;
+import com.Biblioteca_Virtual.repository.UserRepository;
 import com.Biblioteca_Virtual.service.LoanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,13 +24,20 @@ public class LoanController {
     @Autowired
     private LoanRepository loanRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     //-----------create loan------------------>
     @PostMapping("/create/{id}")
-    public String createLoan(@PathVariable Long id, @RequestParam String borrower) {
-        Book book = bookRepository.findById(id).orElseThrow();
+    public String createLoan(@PathVariable Long id, @RequestParam("user.id") Long userId) {
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid book ID: " + id));
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user ID: " + userId));
         Loan loan = new Loan();
         loan.setBook(book);
-        loan.setBorrowerName(borrower);
+        loan.setUser(user);
         loan.setLoanDate(LocalDate.now());
         loan.setStatus(LoanStatus.ACTIVE);
         loanRepository.save(loan);
@@ -62,9 +67,11 @@ public class LoanController {
     @GetMapping("/book/{id}")
     public String loanForm(@PathVariable Long id, Model model) {
         Book book = bookRepository.findById(id).orElseThrow();
+        List<User> users = userRepository.findAll();
         model.addAttribute("book", book);
+        model.addAttribute("users", users);
         model.addAttribute("loan", new Loan());
-        return "create";
+        return "createloan";
 
     }
 

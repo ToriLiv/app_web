@@ -12,15 +12,16 @@ public class Loan {
     @ManyToOne
     @JoinColumn(name = "book_id", nullable = false)
     private Book book;
-
-    private String borrowerName;
-
     private LocalDate loanDate;
     private LocalDate returnDate;
     private LocalDate dueDate;
 
     @Enumerated(EnumType.STRING)
     private LoanStatus status;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Long getId() {
         return id;
@@ -36,14 +37,6 @@ public class Loan {
 
     public void setBook(Book book) {
         this.book = book;
-    }
-
-    public String getBorrowerName() {
-        return borrowerName;
-    }
-
-    public void setBorrowerName(String borrowerName) {
-        this.borrowerName = borrowerName;
     }
 
     public LocalDate getLoanDate() {
@@ -76,5 +69,13 @@ public class Loan {
 
     public void setStatus(LoanStatus status) {
         this.status = status;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

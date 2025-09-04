@@ -1,9 +1,7 @@
 package com.Biblioteca_Virtual.repository;
-
 import com.Biblioteca_Virtual.model.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 //-------------------database repository for Book entity------------------->>

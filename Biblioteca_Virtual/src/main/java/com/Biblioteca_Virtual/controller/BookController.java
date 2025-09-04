@@ -55,7 +55,7 @@ public class BookController {
         model.addAttribute("book", new Book());
         model.addAttribute("statuses", BookStatus.values());
         model.addAttribute("valuations", Valuation.values());
-        return "add"; //template add
+        return "addbook"; //template add
     }
 
     //---------------------method to edit books---------------------
@@ -66,7 +66,7 @@ public class BookController {
             model.addAttribute("book", book);
             model.addAttribute("statuses", BookStatus.values());
             model.addAttribute("valuations", Valuation.values());
-            return "edit"; //template edit
+            return "editbook"; //template edit
         } else {
             return "redirect:/books/list";
         }

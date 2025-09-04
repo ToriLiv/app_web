@@ -20,12 +20,12 @@
 </div>
 
 <div class="orbit"></div>
-<table id="booksTable" class="table table-striped table-bordered">
+<table id="loansTable" class="table table-striped table-bordered">
     <thead class="table-dark">
     <tr>
         <th>ID</th>
         <th>Book Title</th>
-        <th>Borrower</th>
+        <th>User</th>
         <th>Loan Date</th>
         <th>Return Date</th>
         <th>Status</th>
@@ -35,7 +35,7 @@
     <tr th:each="loan : ${loans}">
         <td th:text="${loan.id}"></td>
         <td th:text="${loan.book.title}"></td>
-        <td th:text="${loan.borrowerName}"></td>
+        <td th:text="${loan.user != null ? loan.user.name : 'N/A'}"></td>
         <td th:text="${loan.loanDate}"></td>
         <td th:text="${loan.returnDate} != null ? ${loan.returnDate} : 'Not returned'"></td>
         <td th:text="${loan.status}"></td>
@@ -56,8 +56,8 @@
 
 <script>
     $(document).ready(function() {
-        if ($('#booksTable tbody tr').length > 0) {
-            $('#booksTable').DataTable({
+        if ($('#loansTable tbody tr').length > 0) {
+            $('#loansTable').DataTable({
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json"
                 }

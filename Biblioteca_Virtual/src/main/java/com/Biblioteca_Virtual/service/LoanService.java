@@ -1,11 +1,9 @@
 package com.Biblioteca_Virtual.service;
 
-import com.Biblioteca_Virtual.model.Book;
-import com.Biblioteca_Virtual.model.BookStatus;
-import com.Biblioteca_Virtual.model.Loan;
-import com.Biblioteca_Virtual.model.LoanStatus;
+import com.Biblioteca_Virtual.model.*;
 import com.Biblioteca_Virtual.repository.BookRepository;
 import com.Biblioteca_Virtual.repository.LoanRepository;
+import com.Biblioteca_Virtual.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
@@ -22,11 +20,13 @@ public class LoanService {
     @Autowired
     private BookRepository bookRepository;
 
+
+
     //--------------manage loans---------------------->>
-    public Loan createLoan(Book book, String borrower) {
+    public Loan createLoan(Book book, User user) {
         Loan loan = new Loan();
         loan.setBook(book);
-        loan.setBorrowerName(borrower);
+        loan.setUser(user);
         loan.setLoanDate(LocalDate.now());
         loan.setDueDate(LocalDate.now().plusWeeks(2)); //2 weeks loan period
         loan.setStatus(LoanStatus.ACTIVE);
