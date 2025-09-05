@@ -6,73 +6,73 @@ font-family: "Lilita One", sans-serif;
 
 
 :root {
-  --color-primary: #7b00f1;
-  --color-muted: #f0dfff;
+--color-primary: #7b00f1;
+--color-muted: #f0dfff;
 }
 
 body {
-  min-height: 100vh;
-  background: linear-gradient(rgb(255, 194, 255), rgb(197, 239, 255));
-  color: #52023D;
-  font-family: "Euclid Circular A", "Poppins";
+min-height: 100vh;
+background: linear-gradient(rgb(255, 194, 255), rgb(197, 239, 255));
+color: #52023D;
+font-family: "Euclid Circular A", "Poppins";
 }
 
 .blob,
 .orbit {
-  position: fixed;
-  z-index: 1;
-  top: 50%;
-  left: 50%;
-  translate: -50% -50%;
+position: fixed;
+z-index: 1;
+top: 50%;
+left: 50%;
+translate: -50% -50%;
 }
 
 @keyframes spin {
-  100% {
-    rotate: 1turn;
-  }
+100% {
+rotate: 1turn;
+}
 }
 
 .orbit {
-  width: 200vw;
-  max-width: 800px;
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
-  animation: spin 70s infinite linear;
+width: 200vw;
+max-width: 800px;
+aspect-ratio: 1 / 1;
+border-radius: 50%;
+animation: spin 70s infinite linear;
 }
 
 .orbit::before {
-  content: "";
-  position: absolute;
-  width: 35px;
-  aspect-ratio: 1 / 1;
-  border-radius: inherit;
-  background: #c01af3;
-  border: 2px solid #c01af3;
-  box-shadow:
-    0 0 20px 5px #c01af3
+content: "";
+position: absolute;
+width: 35px;
+aspect-ratio: 1 / 1;
+border-radius: inherit;
+background: #c01af3;
+border: 2px solid #c01af3;
+box-shadow:
+0 0 20px 5px #c01af3
 }
 
 .orbit::after {
-  content: "";
-  position: absolute;
-  width: 35px;
-  aspect-ratio: 1 / 1;
-  border-radius: inherit;
-  background: #1ad6f3;
-  border: 2px solid #1ad6f3;
-  box-shadow:
-    0 0 20px 5px #1ad6f3
+content: "";
+position: absolute;
+width: 35px;
+aspect-ratio: 1 / 1;
+border-radius: inherit;
+background: #1ad6f3;
+border: 2px solid #1ad6f3;
+box-shadow:
+0 0 20px 5px #1ad6f3
 }
 
 .orbit::before {
-  top: 50%;
-  width: 35px;
-  left: -9px;
+top: 50%;
+width: 35px;
+left: -9px;
 }
 
 .orbit::after {
-  top: 50%;
-  right: -12px;
+top: 50%;
+right: -12px;
 }
 
 h1 {
