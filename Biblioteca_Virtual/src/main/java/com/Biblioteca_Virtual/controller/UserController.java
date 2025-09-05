@@ -1,12 +1,18 @@
 package com.Biblioteca_Virtual.controller;
+import com.Biblioteca_Virtual.model.Loan;
+import com.Biblioteca_Virtual.model.LoanStatus;
 import com.Biblioteca_Virtual.model.User;
+import com.Biblioteca_Virtual.repository.LoanRepository;
 import com.Biblioteca_Virtual.repository.UserRepository;
 import com.Biblioteca_Virtual.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/users")
@@ -19,15 +25,30 @@ public class UserController {
         @Autowired
         private UserRepository userRepository;
 
+        @Autowired
+        private LoanRepository loanRepository;
+
         //-----LIST USERS-----
         @GetMapping("/list")
         public String listUsers(Model model) {
             List<User> users = userRepository.findAll();
+
+            //encuentra prestamos activos
+            Map<Long, Loan> activeLoans = new HashMap<>();
+            for (User u : users) {
+                Loan activeLoan = loanRepository.findFirstByUserIdAndStatus(u.getId(), LoanStatus.ACTIVE);
+                if (activeLoan != null) {
+                    activeLoans.put(u.getId(), activeLoan);
+                }
+            }
+
             model.addAttribute("users", users);
+            model.addAttribute("activeLoans", activeLoans);
             return "users";
         }
 
-        //-----ADD USER-----
+
+    //-----ADD USER-----
         @GetMapping("/adduser")
         public String addUser(Model model) {
             model.addAttribute("user", new User());

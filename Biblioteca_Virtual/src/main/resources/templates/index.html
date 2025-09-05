@@ -23,9 +23,9 @@
 
     <div class="mb-3">
         <a th:href="@{/}" class="btn btn-dark">Exit</a>
-        <a th:href="@{/books/add}" class="btn btn-dark">Add New Book</a>
-        <a th:href="@{/loans/list}" class="btn btn-dark">Loans</a>
-        <a th:href="@{/users/list}" class="btn btn-dark">Users</a>
+        <a th:href="@{/books/add}" class="btn btn-dark btn-md">Add New Book</a>
+        <a th:href="@{/loans/list}" class="btn btn-dark btn-md">Loans</a>
+        <a th:href="@{/users/list}" class="btn btn-dark btn-md">Users</a>
     </div>
 
     <div class="orbit"></div>
@@ -57,20 +57,20 @@
                 <span th:if="${book.valuation == null or book.valuation.stars == 0}">No rating</span>
             </td>
             <td class="actions">
-                <a th:href="@{/books/edit(id=${book.id})}" class="btn btn-dark btn-sm">Edit</a>
+                <a th:href="@{/books/edit(id=${book.id})}" class="btn btn-dark btn-md">✏️</a>
 
                 <!--book with active loan-->
                 <a th:if="${activeLoans[book.id] != null}"
-                   class="btn btn-dark btn-sm disabled"
+                   class="btn btn-dark btn-md disabled"
                    title="Cannot delete book with active loans">
-                    Delete
+                    ❌
                 </a>
 
                 <!--without loans active-->
                 <a th:if="${activeLoans[book.id] == null}"
                    th:href="@{/books/delete(id=${book.id})}"
-                   class="btn-delete btn btn-dark btn-sm">
-                    Delete
+                   class="btn-delete btn btn-dark btn-md">
+                    ❌
                 </a>
             </td>
 
@@ -78,13 +78,13 @@
                 <!--loan a book-->
                 <a th:if="${book.status.name() == 'AVAILABLE'}"
                    th:href="@{/loans/book/{id}(id=${book.id})}"
-                   class="btn-loan btn btn-sm btn-dark">Loan</a>
+                   class="btn-loan btn btn-md btn-dark">Loan</a>
 
                 <!--return books-->
                 <form th:if="${book.status.name() == 'BORROWED'}"
                       th:action="@{/loans/return/{loanId}(loanId=${activeLoans[book.id].id})}"
                       method="post" class="return">
-                    <button type="submit" class="btn btn-sm btn-dark">Return</button>
+                    <button type="submit" class="btn btn-md btn-dark">Return</button>
                 </form>
             </td>
         </tr>

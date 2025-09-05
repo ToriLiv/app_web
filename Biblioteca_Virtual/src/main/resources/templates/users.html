@@ -17,8 +17,8 @@
     <br>
     <h1 class="text-center mb-4">🌟 USER MANAGEMENT 🌟</h1>
     <div class="mb-3">
-        <a th:href="@{/books/list}" class="btn btn-dark">Books</a>
-        <a th:href="@{/users/adduser}" class="btn btn-dark">➕ Add User</a>
+        <a th:href="@{/books/list}" class="btn btn-dark btn-md">Books</a>
+        <a th:href="@{/users/adduser}" class="btn btn-dark btn-md">➕ Add User</a>
     </div>
 
     <div class="orbit"></div>
@@ -40,9 +40,20 @@
             <td th:text="${user.phone}"></td>
 
             <td class="actions">
-                <a th:href="@{/users/edituser(id=${user.id})}" class="btn btn-dark btn-sm">Edit</a>
+                <a th:href="@{/users/edituser(id=${user.id})}" class="btn btn-dark btn-md">✏️</a>
 
-                <a th:href="@{/users/deleteuser(id=${user.id})}" class="btn-delete btn btn-dark btn-sm">Delete</a>
+                <a th:if="${activeLoans[user.id] != null}"
+                   class="btn btn-dark btn-md disabled"
+                   title="Cannot delete user with active loans">
+                    ❌
+                </a>
+
+                <!--usuario sin prestamos activos-->
+                <a th:if="${activeLoans[user.id] == null}"
+                   th:href="@{/users/deleteuser(id=${user.id})}"
+                   class="btn-delete btn btn-dark btn-md">
+                    ❌
+                </a>
 
             </td>
         </tr>

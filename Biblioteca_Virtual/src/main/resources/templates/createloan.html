@@ -13,9 +13,9 @@
     <h2 th:text="'Loan Book: ' + ${book.title}" class="text-center fw-bold mb-4 title-d"></h2>
     <form th:action="@{/loans/create/{id}(id=${book.id})}" method="post">
       <div class="mb-3">
-        <label for="user">User:</label><!--load users from the database-->
+        <label for="user">Borrower's name:</label><!--load users from the database-->
         <select id="user" name="user.id" class="form-control select2" required><!--busqueda integrada-->
-          <option value="" disabled selected>Select an user</option>
+          <option value="" selected hidden>Select a user</option>
           <option th:each="u : ${users}" th:value="${u.id}" th:text="${u.name}"></option>
         </select>
       </div>
@@ -28,6 +28,7 @@
 </div>
 
 <script th:src="@{/js/loan.js}"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
@@ -35,7 +36,7 @@
 <script>
   $(document).ready(function() {
       $('#user').select2({
-          placeholder: "Select an user",
+          placeholder: "Select a user",
           allowClear: true,
           width: '100%'
       });

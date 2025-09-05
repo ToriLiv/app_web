@@ -34,7 +34,7 @@ $(document).ready(function() {
 
 
     //----- Loan Book ----->>>>>
-     document.querySelectorAll('btn-loan').forEach(btn => {
+     document.querySelectorAll('.btn-loan').forEach(btn => {
             if (btn.textContent.trim() === 'Loan') {
                 btn.addEventListener('click', function (e) {
                     e.preventDefault();
