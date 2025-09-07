@@ -1,4 +1,5 @@
 package com.Biblioteca_Virtual.service;
+import com.Biblioteca_Virtual.model.Book;
 import com.Biblioteca_Virtual.model.User;
 import com.Biblioteca_Virtual.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +18,16 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<User> list() { return userRepository.findAll(); }
+    public List<User> list() { return userRepository.findByDeletedFalse(); }
 
     public User getUser(Long id) { return userRepository.findById(id).orElse(null); }
 
     public void saveUser(User user) { userRepository.save(user); }
 
-    public void deleteUser(Long id) { userRepository.deleteById(id); }
+    public void deleteUser(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalStateException("User not found"));
+        user.setDeleted(true);  //-------soft delete
+        userRepository.save(user);
+    }
 }

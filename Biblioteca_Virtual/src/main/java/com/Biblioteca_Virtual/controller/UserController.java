@@ -31,7 +31,7 @@ public class UserController {
         //-----LIST USERS-----
         @GetMapping("/list")
         public String listUsers(Model model) {
-            List<User> users = userRepository.findAll();
+            List<User> users = userService.list();
 
             //encuentra prestamos activos
             Map<Long, Loan> activeLoans = new HashMap<>();
@@ -76,9 +76,10 @@ public class UserController {
 
 
     @GetMapping("/deleteuser")
-        public String deleteUser(@RequestParam("id") Long id) {
-            userService.deleteUser(id);
+    public String deleteBooks(@RequestParam("id") Long id) {
+        userService.deleteUser(id);
             return "redirect:/users/list";
         }
     }
+
 

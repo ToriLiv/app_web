@@ -18,6 +18,8 @@ public class User {
     @NotBlank
     private String phone;
 
+    private boolean deleted = false;
+
     //---------------getters and setters----------------->>
     public Long getId() {
         return id;
@@ -49,5 +51,13 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 }
